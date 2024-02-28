@@ -29,34 +29,42 @@
 ## Installation
 
 ```bash
-$ pnpm install
+$ npm install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ pnpm run start
+$ npm run start
 
 # watch mode
-$ pnpm run start:dev
+$ npm run start:dev
 
 # production mode
-$ pnpm run start:prod
+$ npm run start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ pnpm run test
+$ npm run test
 
 # e2e tests
-$ pnpm run test:e2e
+$ npm run test:e2e
 
 # test coverage
-$ pnpm run test:cov
+$ npm run test:cov
 ```
+## Output
+
+```bash
+#API
+http://localhost:3000/execute-command
+```
+![image](https://github.com/GSathiyapriya/chandrayaan3-app/assets/152191156/e99dc3a6-5570-4894-b132-29aa0e7c1c8a)
+
 
 ## Support
 
