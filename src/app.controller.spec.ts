@@ -22,4 +22,14 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('Hello World!');
     });
   });
+
+  it('should execute commands and return final position and direction', () => {
+    const executeCommandsSpy = jest.spyOn(spacecraftService, 'executeCommands');
+
+    appController.executeCommands();
+
+    expect(executeCommandsSpy).toHaveBeenCalledWith(['f', 'r', 'u', 'b', 'l']);
+    expect(spacecraftService.getPosition()).toEqual({ x: 0, y: 1, z: -1 });
+    expect(spacecraftService.getDirection()).toEqual('N');
+  });
 });

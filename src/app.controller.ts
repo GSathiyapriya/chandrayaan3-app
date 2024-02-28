@@ -18,7 +18,6 @@ export class AppController {
     this.spacecraftService.executeCommands(commands);
     const position = this.spacecraftService.getPosition();
     const direction = this.spacecraftService.getDirection();
-    console.log(position, direction);
     return {
       finalPosition: position,
       finalDirection: direction,
