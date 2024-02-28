@@ -23,13 +23,22 @@ describe('AppController', () => {
     });
   });
 
-  it('should execute commands and return final position and direction', () => {
-    const executeCommandsSpy = jest.spyOn(spacecraftService, 'executeCommands');
+  it('should execute commands and return final position and direction', async () => {
+    const commands = ['f', 'r', 'u', 'b', 'l'];
+    jest.spyOn(spacecraftService, 'executeCommands').mockImplementation(() => {
+      return;
+    });
+    jest.spyOn(spacecraftService, 'getPosition').mockReturnValue({ x: 0, y: 1, z: -1 });
+    jest.spyOn(spacecraftService, 'getDirection').mockReturnValue('N');
 
-    appController.executeCommands();
-
-    expect(executeCommandsSpy).toHaveBeenCalledWith(['f', 'r', 'u', 'b', 'l']);
-    expect(spacecraftService.getPosition()).toEqual({ x: 0, y: 1, z: -1 });
-    expect(spacecraftService.getDirection()).toEqual('N');
+    const result = await appController.executeCommands(commands);
+    
+    expect(spacecraftService.executeCommands).toHaveBeenCalledWith(commands);
+    expect(spacecraftService.getPosition).toHaveBeenCalled();
+    expect(spacecraftService.getDirection).toHaveBeenCalled();
+    expect(result).toEqual({
+      finalPosition: { x: 0, y: 1, z: -1 },
+      finalDirection: 'N',
+    });
   });
 });

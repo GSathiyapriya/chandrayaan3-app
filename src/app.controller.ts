@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { SpacecraftService } from './spacecraft/spacecraft.service';
 
@@ -12,9 +12,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('spacecraft')
-  executeCommands() {
-    const commands = ['f', 'r', 'u', 'b', 'l'];
+  @Post('/execute-command')
+  executeCommands(@Body() body: any) {
+    const { commands } = body;
     this.spacecraftService.executeCommands(commands);
     const position = this.spacecraftService.getPosition();
     const direction = this.spacecraftService.getDirection();
